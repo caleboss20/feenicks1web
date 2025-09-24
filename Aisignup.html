@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Flow</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    .container {
+      position: relative;
+      width: 350px;
+      height: 400px;
+      overflow: hidden;
+    }
+    .step {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      transition: transform 0.6s ease;
+    }
+    #step1 {
+      transform: translateX(0);
+      z-index: 3;
+    }
+    #step2 {
+      transform: translateX(-100%);
+      z-index: 2;
+    }
+    #step3 {
+      transform: translateX(-100%);
+      z-index: 1;
+    }
+    .slide-out {
+      transform: translateX(100%);
+    }
+    .slide-in {
+      transform: translateX(0);
+    }
+    h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #34a853;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #2c8b45;
+    }
+    .checker {
+      font-size: 14px;
+      margin: 6px 0;
+    }
+    .checker label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+      color: #555;
+    }
+    .checker input {
+      margin-right: 8px;
+      pointer-events: none;
+    }
+    .checker input.valid {
+      accent-color: green;
+    }
+    .checker input.invalid {
+      accent-color: lightgray;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Step 1: Email -->
+  <div class="step" id="step1">
+    <h2>Enter your email</h2>
+    <input type="email" id="email" placeholder="example@mail.com">
+    <button onclick="nextStep(1)">Continue</button>
+  </div>
+  <!-- Step 2: Password -->
+  <div class="step" id="step2">
+    <h2>Create your password</h2>
+    <input type="password" id="password" placeholder="Enter password" onkeyup="checkPassword()">
+   
+    <div class="checker">
+      <label><input type="radio" id="length" class="invalid" disabled> Minimum 8 characters</label>
+      <label><input type="radio" id="special" class="invalid" disabled> One special character</label>
+      <label><input type="radio" id="upperlower" class="invalid" disabled> One uppercase & lowercase</label>
+      <label><input type="radio" id="number" class="invalid" disabled> One number</label>
+    </div>
+    <button onclick="nextStep(2)">Continue</button>
+  </div>
+  <!-- Step 3: Details -->
+  <div class="step" id="step3">
+    <h2>Your details</h2>
+    <input type="text" id="fullname" placeholder="Full Name">
+    <input type="number" id="age" placeholder="Age">
+    <input type="text" id="occupation" placeholder="Occupation">
+    <input type="text" id="investment" placeholder="Investment Goal">
+    <button onclick="finishSignup()">Create Account</button>
+  </div>
+</div>
+<script>
+function nextStep(step) {
+  if (step === 1) {
+    document.getElementById("step1").classList.add("slide-out");
+    document.getElementById("step2").classList.add("slide-in");
+  } else if (step === 2) {
+    document.getElementById("step2").classList.add("slide-out");
+    document.getElementById("step3").classList.add("slide-in");
+  }
+}
+function checkPassword() {
+  let pass = document.getElementById("password").value;
+  document.getElementById("length").className = pass.length >= 8 ? "valid" : "invalid";
+  document.getElementById("special").className = /[!@#$%^&*]/.test(pass) ? "valid" : "invalid";
+  document.getElementById("upperlower").className = (/[A-Z]/.test(pass) && /[a-z]/.test(pass)) ? "valid" : "invalid";
+  document.getElementById("number").className = /\d/.test(pass) ? "valid" : "invalid";
+}
+function finishSignup() {
+  alert("Account created successfully! 🎉");
+}
+</script>
+</body>
+</html>

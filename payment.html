@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feenicks1 - Step 2 Payment</title>
+<link rel="stylesheet" href="payment.css">
+<style>
+</style>
+</head>
+<body>
+
+    <div class="top-container">
+        <h2>Make Investment</h2>
+  <div class="progress-container">
+  <div class="progress-step active">
+    <div class="circle"id="circle-1">1</div><span>Package</span>
+  </div>
+  <div class="progress-step">
+    <div class="circle"id="circle-2">2</div><span>Payment</span>
+  </div>
+  <div class="progress-step">
+    <div class="circle"id="circle-3">3</div><span>Confirm</span>
+  </div>
+</div>
+    </div>
+
+    <div class="step-1">
+      <h2>Review your investment Strategy</h2>
+      <p ><a href=""class="options">Other options</a></p>
+      <div class="package-card">
+        <h3>Mutual Fund Capital</h3>
+        <p>You will take on some risk 
+            in order to grow your money.</p>
+            <div class="category-container">
+                
+                <div class="first-category">
+                    <p>Risk</p>
+                    <p><strong>Medium</strong></p>
+                </div>
+                 <div class="first-category">
+                    <p>Monthly ROI</p>
+                    <p><strong>(5-10)%</strong></p>
+                </div>
+                 <div class="first-category">
+                    <p>Management fee:</p>
+                    <p><strong>2%</strong></p>
+                </div>
+                 <div class="first-category">
+                    <p>Ticker:</p>
+                    <p><strong>$MFC</strong></p>
+                </div>
+                 <div class="first-category">
+                    <p>Capital</p>
+                    <p><strong>GHS 140.00- 499.99</strong></p>
+                </div>
+                <div class="btn-group">
+                <button class="more-btn">More info</button>
+                <button class="select-btn">Select</button> 
+               </div>
+            </div>
+      </div>
+       
+    </div>
+   
+    <div class="step-2">
+
+    <div class="details"> <p class="instruct">ENTER YOUR PAYMENT DETAILS</p></div>
+<div class="payment-options">
+  <button class="option-btn active" data-type="mobile">Mobile Money</button>
+  <button class="option-btn" data-type="card">Card</button>
+</div>
+<!-- Payment Forms -->
+<div id="paymentForms">
+  <!-- Mobile Money Form -->
+  <form id="mobileForm">
+    <label>Mobile Network</label>
+    <select>
+      <option>MTN</option>
+      <option>TELECEL</option>
+      <option>AIRTEL/TIGO</option>
+    </select>
+    <label>Phone Number</label>
+    <input type="tel" value="025XXXXXXX" readonly>
+    <label>Name</label>
+    <input type="text" value="User Name" readonly>
+    <label>Account Username (optional)</label>
+    <input type="text" placeholder="Enter a username">
+    <label>Amount</label>
+    <input type="number" value="User Name" placeholder="GHS 140.00">
+</form>
+  <!-- Card Form -->
+  <form id="cardForm" style="display:none;">
+    <label>Card Number</label>
+    <input type="text" placeholder="1234 5678 9012 3456">
+    <label>Expiry</label>
+    <input type="text" placeholder="MM/YY">
+    <label>CVV</label>
+    <input type="text" placeholder="123">
+    <label>Name on Card</label>
+    <input type="text" placeholder="Full Name">
+  </form>
+</div>
+<button id="confirmBtn">Next</button>
+</div>
+
+   <div class="step-3">
+   <h2 class="cash-deposit">GHS 2,000.00</h2>
+   <p>Ready to make your first investment deposit </p>
+   <button class="confirm-3-btn">Confirm payment</button>
+   <button class="cancel-3-btn">Cancel payment</button>
+   <a href="dashboard.html"class="dashboard-link">Go to Dashboard</a>
+</div>
+ <div class="loader-overlay" id="loaderOverlay">
+   <div class="loader"></div>
+
+<script>
+  // Payment Option Switch
+  const optionBtns = document.querySelectorAll('.option-btn');
+  const mobileForm = document.getElementById('mobileForm');
+  const cardForm = document.getElementById('cardForm');
+  optionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      optionBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if(btn.dataset.type === 'mobile'){
+        mobileForm.style.display = 'flex';
+        cardForm.style.display = 'none';
+      } else {
+        mobileForm.style.display = 'none';
+        cardForm.style.display = 'flex';
+      }
+    });
+  });
+  // Confirm Payment
+  const confirmBtn = document.getElementById('confirmBtn');
+  const steps = document.querySelectorAll('.progress-step');
+  confirmBtn.addEventListener('click', () => {
+   step_2.style.display="none";
+     step_3.style.display="none";
+   overlay.style.display="block";
+
+   circle_2.style.color="#fff";
+    circle_2.style.backgroundColor="rgb(7, 125, 7)";
+       circle_3.style.backgroundColor="white";
+        circle_3.style.color="green";
+
+        setTimeout(()=>{
+   overlay.style.display="none";
+    step_3.style.display="block";
+
+        },1000)
+
+  });
+
+
+
+let select_btn=document.querySelector('.select-btn');
+let step_1=document.querySelector('.step-1');
+let step_2=document.querySelector('.step-2');
+let step_3=document.querySelector('.step-3');
+let circle_1=document.getElementById('circle-1');
+let circle_2=document.getElementById('circle-2');
+let circle_3=document.getElementById('circle-3');
+let overlay=document.getElementById('loaderOverlay');
+select_btn.addEventListener('click',()=>{
+    step_1.style.display="none";
+    overlay.style.display="block";
+
+    setTimeout(()=>{
+      step_2.style.display="block";
+      circle_1.style.backgroundColor="rgb(7, 125, 7)";
+       circle_2.style.backgroundColor="white";
+        circle_2.style.color="green";
+
+       overlay.style.display="none";
+       
+
+    },1000)
+
+})
+
+
+
+
+
+
+
+  
+ 
+  
+
+
+
+
+</script>
+</body>
+</html>

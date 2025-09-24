@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        @media(max-width:800px){
+  body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+      /* background-color: rgb(23, 146, 23); */
+  }
+  .container{
+    width:100%;
+    height:110vh;
+      /* background-color: rgb(23, 146, 23); */
+  
+  }
+  .top-content{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .notification{
+    width:40px;
+    height:40px;
+    /* background-color: blueviolet; */
+    position: relative;
+    margin-top: 10px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  .notification img{
+   width:35px;
+    height:35px;
+  }
+  .notify-dot{
+    padding: 6px;
+    width:3%;
+    background-color: rgb(207, 14, 14);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    right:5px;
+    border-radius: 50%;
+  }
+   .notify-dot span{
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+   }
+  .top-category{
+    width:100%;
+    padding-top: 20px;
+    height:100px;
+    /* margin-top: 30px; */
+    /* background-color: green; */
+  }
+  .top-category{
+    font-size:13px ;
+    padding-left: 15px;
+  }
+   .top-category h2{
+    font-size: 22px;
+   }
+  .portfolio{
+    max-width:70%;
+    padding: 1px;
+    font-weight: 600;
+      color:rgb(17, 184, 17);
+    padding-left: 5px;
+    background-color: rgb(197, 233, 197);
+    border-radius: 5px;
+  }
+  .portfolio p{
+     color:rgb(5, 106, 5);
+    font-size: 17px;
+
+  }
+  .balance-container{
+    width:84%;
+    height:300px;
+    background: linear-gradient(135deg,rgb(8, 69, 8),rgba(70, 173, 70, 0.933),rgb(8, 69, 8));
+    /* background-color: rgb(8, 69, 8); */
+       /* background:linear-gradient(135deg,rgb(8, 69, 8),rgb(218, 171, 113),rgb(8, 69, 8)) ; */
+    margin-top: 40px;
+    border-radius: 15px;
+    padding: 0px 25px;
+  }
+  .balance-details{
+   
+    padding:20px;
+    /* background-color: #fff; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .balance-details h2{
+    font-size: 45px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 2px;
+  }
+  .balance-details p{
+    color: rgb(18, 105, 18);
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .balance-details span{
+    font-size: 18px;
+     color: #f5f5f5;
+  }
+  .balance-details button{
+  width:60%;
+  height:40px;
+  margin-top: 30px;
+  border-radius: 5px;
+  font-size: 18px;
+  color: rgb(9, 117, 9);
+  border: none;
+  padding: 5px;
+  outline: none;
+  }
+  .statistics-section{
+     width:95%;
+    height:240px;
+    background-color:#fafafa;
+    margin-top: 100px;
+    border-radius: 15px;
+    margin-left:-10px;
+    padding-right:  35px;
+    padding-left: 10px;
+  }
+  .stats-section{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    gap:30px;
+  }
+  .stats{
+    padding: 0px 10px;
+     cursor: pointer;
+    /* background-color: orange; */
+   
+  }
+  .statistics-section p{
+    color: #666;
+    font-size: 17px;
+    cursor: pointer;
+  }
+   .statistics-section h3{
+    font-size: 20px;
+    color: rgb(8, 69, 8);
+   }
+   .statistics-section strong{
+    font-size: 19px;
+    line-height: 12px;
+   color: rgb(8, 69, 8);
+   }
+   .graph-section{
+     width:100%;
+    height:360px;
+      background:linear-gradient(135deg,rgb(217, 239, 217),rgb(222,212,200)) ;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-radius: 15px;
+    margin-left:-20px;
+    padding-right:  35px;
+    padding-left: 10px;
+   }
+.graph-section h3{
+  font-size: 20px;
+  padding-top: 20px;
+  text-align: center;
+      position: relative;
+    color: rgb(8, 69, 8); 
+ }
+ .chart-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin-left: 40px;
+    }
+   svg {
+      transform: rotate(-90deg); /* start arcs from top */
+    }
+    .arc {
+      fill: none;
+      stroke-width: 25;
+      stroke-linecap: round;
+      stroke-dasharray: 0;
+      stroke-dashoffset: 0;
+      transition: stroke-dasharray 1s ease-out;
+    }
+    .label {
+      position: absolute;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      font-size: 16px;
+      background-color: #fff;
+       box-shadow: 0 -8px 20px rgba(0,0,0,0.05);
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      max-width: 100%;
+      white-space: normal;
+      word-break: break-word;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.5s ease-in;
+    }
+    .label .percent {
+      display: block;
+      font-size: 28px;
+    }
+   
+    
+  }
+    </style>
+</head>
+<body>
+ <div class="container">
+  <div class="top-category">
+    <div class="top-content">
+      <h2>Hi Caleb</h2>
+      <div class="notification"><img src="notifications.png" alt=""></div>
+      <div class="notify-dot"><span>2</span></div>
+    </div>
+    
+   <div class="portfolio"><p>Portfolio type: Mutual Fund Capital</p></div>
+   <div class="balance-container">
+    <div class="balance-details">
+        <p>Portfolio Value</p>
+        <h2 class="balance">$9,340.00</h2>
+         <span>+$1422.33 (11.20%) Today </span>
+         <button class="fund-btn">Fund Portfolio</button>
+    </div>
+    <div class="statistics-section">
+     <h3>Statistics</h3>
+       <div class="stats-section">
+         <div class="stats">
+          <p>Portfolio</p>
+          <strong class="portfolio-value">$8,340.00</strong>
+         </div>
+     <div class="stats">
+       <p>Portfolio Type</p>
+          <strong>Real Estate</strong>
+     </div>
+     <div class="stats">
+      <p>Today's Gains</p>
+          <strong>$1,422.33</strong>
+     </div>
+     <div class="stats">
+      <p>Today's % Gain</p>
+          <strong>11.20%</strong>
+     </div>
+       </div>
+    
+    </div>
+      <div class="graph-section">
+        <h3>Fund Allocation</h3>
+        <div class="chart-container">
+           <svg width="300" height="300">
+      <circle cx="150" cy="150" r="100" stroke="#e6e6e6" stroke-width="25" fill="none"/>
+    </svg>
+        </div>
+        
+
+      </div>
+   </div>
+  </div>
+ </div>
+
+ <script>
+  let amount_balance=document.querySelector('.balance');
+  let portfolio_value=document.querySelector('.portfolio-value');
+ 
+//dashboard chart//
+    const data = [
+      { name: "Real Estate", value: 30, color: "#2e7d32" },
+      { name: "Mutual Fund", value: 42, color: "rgb(8, 69, 8)" },
+      { name: "Agribusiness cap", value: 28, color: "rgb(23, 146, 23)" }
+    ];
+    const total = data.reduce((s, d) => s + d.value, 0);
+    const svg = document.querySelector("svg");
+    const container = document.querySelector(".chart-container");
+    let currentAngle = 0;
+    const centerX = 150, centerY = 150, radius = 100;
+    let delay = 0;
+    data.forEach((d, index) => {
+      const angle = (d.value / total) * 360;
+      const startAngle = currentAngle;
+      const endAngle = currentAngle + angle;
+      const startRad = (Math.PI / 180) * startAngle;
+      const endRad = (Math.PI / 180) * endAngle;
+      const x1 = centerX + radius * Math.cos(startRad);
+      const y1 = centerY + radius * Math.sin(startRad);
+      const x2 = centerX + radius * Math.cos(endRad);
+      const y2 = centerY + radius * Math.sin(endRad);
+      const largeArc = angle > 180 ? 1 : 0;
+      const pathData = `
+        M ${x1} ${y1}
+        A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2}
+      `;
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", pathData);
+      path.setAttribute("stroke", d.color);
+      path.setAttribute("class", "arc");
+      // calculate arc length
+      const arcLength = (2 * Math.PI * radius) * (d.value / total);
+      path.style.strokeDasharray = arcLength + " " + arcLength;
+      path.style.strokeDashoffset = arcLength;
+      svg.appendChild(path);
+      // animate after delay
+      setTimeout(() => {
+        path.style.transition = "stroke-dashoffset 1s ease-out";
+        path.style.strokeDashoffset = 0;
+      }, delay);
+      // Label placement (mid angle)
+      const midAngle = (startAngle + endAngle) / 2;
+      const lx = centerX + (radius + 35) * Math.cos((Math.PI/180)*midAngle);
+      const ly = centerY + (radius + 35) * Math.sin((Math.PI/180)*midAngle);
+      const label = document.createElement("div");
+      label.className = "label";
+      label.style.left = lx + "px";
+      label.style.top = ly + "px";
+      label.style.color = d.color;
+      label.innerHTML = `<span class="percent">${d.value}%</span>${d.name}`;
+      container.appendChild(label);
+      // fade in label after arc animates
+      setTimeout(() => {
+        label.style.opacity = 1;
+      }, delay + 1000);
+      currentAngle += angle;
+      delay += 1000; // stagger animation for each arc
+    });
+  
+ </script>
+</body>
+</html>

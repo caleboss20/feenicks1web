@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading page</title>
+    <style>
+        @media(max-width:800px){
+/* Loader overlay (full screen) */
+  .loader-overlay {
+    position: absolute;
+    top: 0%; left: 0%;
+    width: 100%; height: 100%;
+    /* background: rgba(255, 255, 255, 0.9); */
+    display: flex;  /* hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+  /* Loader circle */
+  .loader {
+    border: 6px solid #f3f3f3; /* light gray background */
+    border-top: 6px solid rgb(34, 167, 34);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: relative;
+  }
+  /* Spin animation */
+  @keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+ .loaderText {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(34, 167, 34);
+    animation: fade 1.5s infinite;
+    position: absolute;
+    top:58%;
+    left:26%;
+    text-align: center;
+
+     
+
+  }
+  @keyframes fade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 1; }
+  }
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+         <div class="loader-overlay" id="loaderOverlay">
+        <div class="loader"></div>
+        </div>
+        <p class="loaderText"></p>
+    </div>
+
+    <script>
+        setTimeout(()=>{
+        window.location.href="signup.html";
+        },8000);
+
+
+ const loaderText = document.querySelector(".loaderText");
+  const messages = [
+    "Getting things ready...",
+    "Preparing sign-up page...",
+    "Loading secure gateway...",
+    "Just a moment..."
+  ];
+  let index = 0;
+  setInterval(() => {
+    loaderText.textContent = messages[index];
+    index = (index + 1) % messages.length;
+  }, 2000); // change every 2 seconds
+
+    </script>
+</body>
+</html>

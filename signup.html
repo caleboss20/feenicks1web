@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="loginpage.css">
+    <style>
+       
+       @media(max-width:800px){
+ body{
+            padding: 0;
+            margin: 0;
+        }
+       
+        
+.container{
+  display: block;
+}
+.advertisement-section{
+  display: none;
+  /* background-color: orangered; */
+  height: 110vh;
+  padding: 5px 30px;
+}
+.advertisement-section h2{
+  font-size: 28px;
+  line-height: 53px;
+  font-weight: 500;
+  color: #212121;
+  padding: 10px;
+}
+.advertisement-section h3{
+  font-size: 23px;
+  padding: 10px;
+}
+.all-first-socials{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:10px;
+}
+.socials-container{
+ min-width:60%;
+ min-height:24px;
+ border-radius: 10px;
+ background-color: rgb(226, 244, 226);
+ cursor: pointer;
+ position: relative;
+ padding: 20px;
+ transition: .5s ease-in-out;
+
+}
+.socials-container span{
+  font-size: 20px;
+  margin-left: 0px;
+  position: absolute;
+  top:22px;
+  
+
+}
+
+.socials-img{
+  width:25px;
+  height:25px;
+  border-radius: 2px;
+  position: relative;
+  padding-right: 0px;
+  margin-right: 8px;
+  display: inline-block;
+
+}
+.advert-popup{
+  position: fixed;
+  bottom: 0px;
+  left:0;
+  right:0;
+  display: none;
+  background-color:#fff;
+  height:350px;
+  padding: 20px;
+  border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.top-links-advert{
+  display: flex;
+  justify-content: space-between;
+  width:100%;
+  height:50px;
+  /* background-color: yellow; */
+}
+.advert-close-btn{
+  font-size: 41px;
+  font-weight: 100;
+  color: #000;
+   margin-top: 5px;
+
+}
+.advert-skip{
+ margin-top: 15px;
+ margin-right: 30px;
+ font-size: 18px;
+ color: #212121;
+}
+.advert-popup h3{
+ font-size: 26px;
+ margin-left: -10px;
+
+}
+.advert-popup p{
+ font-size: 19px;
+ line-height: 2px;
+}
+.advert-popup input{
+  width:94%;
+  height:70px;
+  border: 1px solid #212121;
+  background-color: rgb(235, 241, 235);
+  padding: 10px;
+  font-size: 22px;
+}
+.advert-popup button{
+  width:99%;
+  height:48px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  margin-top: 30px;
+  border-radius: 10px;
+ background: rgb(8, 69, 8);
+  cursor: pointer;
+  color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+    .email-container,.detail-container,
+    .Surname-container{
+    width:94%;
+    height:50px;
+    margin-left: 2%;
+     padding-top: 5px;
+     padding-bottom: 10px;
+    background-color: #f7f3f3;
+    /* opacity: 0.6; */
+    border-radius: 5px;
+  }
+   label{
+    display: block;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-top:10px ;
+  }
+  input{
+    width: 94%;
+    height:30px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding-left: 20px;
+     border-radius: 5px;
+  }
+  .continue-btn{
+    background-color: rgb(8, 69, 8);
+    margin-top: 60px;
+  }
+  .account-text{
+   
+    font-weight: 100;
+  }
+  .log-in{
+ text-decoration: none;
+ color: rgb(34, 167, 34);
+ margin-top: 0px;
+ margin-left: 10px;
+ font-size: 14px;
+  }
+  .description{
+    font-size: 25px;
+  }
+  .top-login-text{
+    font-weight: 400;
+  }
+  .question-box{
+    width:100%;
+    height:40px;
+    display: flex;
+    margin-top: 30px;
+  }
+       }
+
+        /* Overlay */
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);  /* dark background */
+    display: none; /* hidden by default */
+    z-index: 1000;
+  }
+  /* Popup box */
+  .popup {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: #fff;
+    padding: 20px;
+    padding-top: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    width: 320px;
+    height:230px;
+    max-width: 90%;
+    text-align: center;
+    display: none; /* hidden by default */
+    z-index: 1001;
+    transition: transform 0.2s ease;
+  }
+  .popup.show {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .popup-content p {
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+  .popup-actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  .popup-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  #yesBtn {
+    background: transparent;
+    color: rgb(8, 69, 8);
+
+    flex: 1;
+    border-top:none;
+  }
+  #noBtn {
+    background: transparent;
+    color: #333;
+    flex: 1;
+  }
+  .popup-actions button:hover {
+    opacity: 0.9;
+  }
+  #popup-text{
+    font-size: 12px;
+    color: #333;
+  }
+  .popup-actions{
+    width:95%;
+    height:70px;
+    position: absolute;
+    bottom: 0px;
+    right:0px;
+    left:10px;
+    gap:10px;
+    margin-top: 50px;
+    /* background-color: red; */
+    border-top: 1px solid #ccc;
+  }
+      .verify{
+   color: #000;
+      }
+
+
+ /* Loader overlay (full screen) */
+  .loader-overlay {
+    position: absolute;
+    top: 0%; left: 0%;
+    width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: none;  /* hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+  /* Loader circle */
+  .loader {
+    border: 6px solid #f3f3f3; /* light gray background */
+    border-top: 6px solid rgb(34, 167, 34);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  /* Spin animation */
+  @keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /*============password section===========*/
+
+.password-creator-container{
+  width:100%;
+  height:100vh;
+  background-color: #fff;
+  display: none;
+}
+.option-1{
+  display: flex;
+}
+.all-details-and-radio{
+  width:100%;
+  height:260px;
+  /* background-color: blue; */
+  margin-top: 50px;
+  padding-left: 30px;
+
+}
+label{
+  color: #666;
+}
+
+   /* Hide real radios */
+    input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option-1 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .security-label {
+      cursor: default;
+    }
+
+    /* Create fake circle */
+    .option-1 label::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border: 2px solid rgb(23, 201, 23);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      color: white;
+      transition: all 0.2s ease;
+    }
+
+    /* White checkmark inside green circle when checked */
+    input[type="radio"]:checked + label::before {
+      background: rgb(23, 201, 23);
+      content: "✔";
+      color: #fff;
+    }
+ #strength-text {
+      margin-bottom: 20px;
+      font-weight: 100;
+      margin-left: 40px;
+    }
+
+.password-container{
+  margin-left: 20px;
+  background-color: rgb(250, 246, 243);
+}
+.password-heading{
+  padding-left: 30px;
+  font-weight: 100;
+  padding-top: 70px;
+}
+.email-for-password{
+  padding-left: 30px;
+  font-size: 22px;
+  color: rgb(23, 201, 23);
+  font-weight: 500;
+}
+.security-label{
+  margin-left: 5px;
+}
+.warning-section{
+  display: flex;
+  margin-top: 30px;
+}
+input[type="checkbox"]{
+ width:20px;
+border: none;
+outline: none;
+
+}
+.warning-text{
+  margin-left: 5px;
+  font-size: clamp(16px, 5vw, 5px);
+}
+.next-btn{
+  width:70%;
+  background-color: #666;
+  opacity: 0.5;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: 70px;
+  padding: 10px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+   cursor: not-allowed;
+}
+ .next-btn.active {
+      background: rgb(8, 69, 8);
+      opacity: 1;
+      cursor: pointer;
+    }
+a{
+  
+  color: rgb(23, 201, 23);
+}
+    
+     /* Custom checkbox */
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 12px;
+      height: 23px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      margin-right: 8px;
+      margin-top: 11px;
+      transition: all 0.2s ease;
+    }
+
+    input[type="checkbox"]:checked {
+      background-color: rgb(34, 167, 34);
+      border-color: rgb(34, 167, 34);
+    }
+
+    input[type="checkbox"]:checked::after {
+      content: "✓";
+      position: absolute;
+      top: -2px;
+      left: 2px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+    } 
+    
+   .option-1.invalid::before {
+  border-color: red;
+  background-color: transparent;
+  content: "";
+}
+    
+    .person-account-container{
+      display: none;
+      height: 100vh;
+      width:100%;
+      /* background-color: blueviolet; */
+    }
+    
+    
+    .Surname-container,.date-container,.country-container{
+      margin-top: 30px;
+      background-color: #f7f3f3;
+      padding-top:5px ;
+      width:94%;
+      margin-left:10px;
+        
+    }
+    
+    
+    .account-details h2{
+      font-size: 25px;
+      margin-left: 13px;
+      color: #212121;
+      line-height:33px;
+    }
+    .telephone-number{
+      margin-top: 30px;
+     width:94%;
+    height:50px;
+    margin-left: 10px;
+     padding-top: 5px;
+     padding-bottom: 10px;
+    /* background-color: #efecec; */
+    display: flex;
+    border-radius: 5px;
+    gap:20px
+    
+    }
+    .country-tel{
+      flex: 0.3;
+      /* background-color: red; */
+    }
+    .number-box{
+      flex: 1;
+      /* background-color: orange; */
+      border-radius: 10px;
+      
+    }
+
+
+
+
+      .phone-container {
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+      padding: 8px 12px;
+      gap: 8px;
+      margin-top: 30px;
+      background-color: #f7f3f3;
+      width: 89%;
+      margin-left: 10px;
+      position: relative;
+    }
+    .country-dropdown {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .country-flag {
+      font-size: 22px;
+    }
+    .dial-code {
+      /* font-weight: bold; */
+      min-width: 45px;
+      color: #212121;
+      opacity:1;
+      font-size: 16px;
+    }
+    .dropdown-list {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      max-height: 200px;
+      overflow-y: auto;
+      width: 100%;
+      z-index: 1000;
+    }
+    .dropdown-list input {
+      width: 95%;
+      padding: 6px;
+      border: none;
+      border-bottom: 1px solid #ddd;
+      outline: none;
+    }
+    .dropdown-item {
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .dropdown-item:hover {
+      background: #f0f0f0;
+    }
+    .number-box {
+      border: none;
+      outline: none;
+      font-size: 14px;
+      flex: 1;
+      padding: 6px;
+    }
+    .valid {
+      border: 2px solid green !important;
+      border-radius: 6px;
+    }
+    .invalid {
+      border: 2px solid red !important;
+      border-radius: 6px;
+    }
+    .account-continue-btn{
+      width:94%;
+      border: none;
+      outline: none;
+      margin-left: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 60px;
+      color: #fff;
+      background-color: #666;
+      opacity: 0.2;
+      font-size: 15px;
+
+    }
+    #save-btn{
+ transition: .3s ease;
+ padding: 15px;
+
+    }
+    #save-btn:active{
+      background-color: rgb(8, 69, 8);
+      transform: scale(1.05);
+      opacity:1;
+    }
+
+.ottp-verification-container{
+  width:100%;
+  display: none;
+  /* height:100vh; */
+  background-color: #fff;
+}
+.ottp-details{
+  margin-top: 10%;
+  /* height: 100vh; */
+  /* background-color: red; */
+  width:100%;
+}
+.ottp-details h2{
+  font-size: 35px;
+  width:300px;
+  margin-left: 10px;
+  line-height: 42px;
+}
+.ottp-details p{
+  font-size: 19px;
+  color: #666;
+  width:400px;
+  line-height: 34px;
+  margin-left: 10px;
+}
+
+.ottp-box{
+  width: 94%;
+  margin-left: 10px;
+  /* background-color: green; */
+  height:60px;
+  display: flex;
+  gap:10px;
+}
+.box1{
+  flex: 1;
+  border-radius: 10px;
+  /* border: 1px solid green; */
+  background-color: #f1f1f1;
+  width:30px;
+}
+.otp-input{
+ font-size: 40px;
+ padding-top: 20px;
+ font-weight: 600;
+ overflow: hidden;
+ cursor: pointer;
+ color: rgb(9, 118, 9);
+ width: 42px;
+ padding-bottom: 10px;
+}
+
+.ottp-btn{
+  width:94%;
+  border-radius: 10px;
+  margin-left: 10px;
+  border:none;
+  outline:none;
+  padding: 20px;
+  font-size: 15px;
+  color: #333;
+  margin-top: 60px;
+}
+    .code-question{
+      margin-left: 50px;
+      font-size: 17px;
+      color: #333;
+    }
+    .ottp-time{
+      font-size: 18px;
+      margin-left: 0px;
+    }
+    
+    
+    </style>
+</head>
+<body>
+    <div class="container" id="loginForm">
+         <div class="top-section">
+            <h2 class="top-login-text">Welcome to Feenicks1!</h2>
+            <p class="description">Grow your money!</p>
+        </div>
+         <div class="email-container">
+              <label for="email">Email</label>
+              <input type="email" placeholder="Enter your email"class="email-input" required>
+         </div>
+          <button class="continue-btn">Continue with Email</button>
+          <div class="question-box">
+        <p class="account-text"> Have an account?</p>
+        <a href="loginpage.html" class="log-in">Log in</a>
+      </div>   
+<!-- Overlay -->
+ <div class="overlay" id="overlay"></div>
+
+      <!---for the pop up-->
+  <div class="popup" id="popup">
+  <div class="popup-content">
+    <p class="verify">Verify Email</p>
+    <p id="popup-text">Is this your correct email?</p>
+    <div class="popup-actions">
+        <button id="noBtn">No</button>
+      <button id="yesBtn">Looks Good</button>
+      
+    </div>
+  </div>
+   </div>
+    </div>
+     <div class="loader-overlay" id="loaderOverlay">
+   <div class="loader"></div>
+   </div>
+ </div> 
+<!---creating password container-->
+<div class="password-creator-container">
+<h2 class="password-heading">Create your password for</h2>
+ <p class="email-for-password">acaleb888@gmail.com</p>
+  <div class="password-container">
+      <label for="password">Password</label>
+      <input type="password"placeholder="Password"class="password-input">
+     </div>
+     <div class="strength-container">
+     <p id="strength-text">Password strength: <span>—</span></p>
+    </div>
+     <div class="all-details-and-radio">
+      <div class="option-1">
+        <input type="radio"class="radio"><label for=""class="security-label">Minimum 8 characters</label>
+      </div>
+        <div class="option-1">
+        <input type="radio"class="radio"><label for=""class="security-label">One special character</label>
+      </div>
+        <div class="option-1">
+        <input type="radio"class="radio"><label for=""class="security-label">One uppercase and lowercase character</label>
+      </div> 
+       <div class="option-1">
+        <input type="radio"class="radio"><label for=""class="security-label">One number</label>
+      </div>
+      
+      <div class="warning-section">
+       <input type="checkbox"class="checkbox">
+ <label for=""class="warning-text">I confirm I am at least 18 years
+  old and legally allowed to invest in
+   my country of residence.I agree to the 
+  <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>
+ </label>
+      </div>
+ 
+
+     </div>
+     <button class="next-btn">Next</button>
+     </div>
+ 
+<!---end password container-->
+
+<!---for the person account detail section--->
+
+  <div class="person-account-container">
+     <div class="account-details">
+      <h2>Tell us about <br> yourself.</h2>
+          <div class="detail-group">
+            <div class="detail-container">
+              <label for="first-name">First name</label>
+              <input type="name"id="firstName" placeholder="First name"class="name-input" required>
+            </div>
+            <div class="Surname-container">
+              <label for="password">Surname</label>
+              <input type="password"id="surname"placeholder="Surname"class="surname-input">
+            </div>
+              
+
+      <div class="phone-container">
+      <div class="country-dropdown" id="dropdownToggle">
+        <span class="country-flag"></span>
+        <span class="dial-code">+233</span>
+      </div>
+      <input type="tel" class="number-box"id="phone" placeholder="Enter phone number">
+      <!-- Dropdown list -->
+      <div class="dropdown-list" id="dropdownList">
+        <input type="text" id="searchBox" placeholder="Search country...">
+        <div class="dropdown-item" data-code="+233" data-flag="🇬🇭" data-country="ghana"><span class="abbr"></span>🇬🇭 Ghana (+233)</div>
+        <div class="dropdown-item" data-code="+1" data-flag="🇺🇸" data-country="usa">🇺🇸 USA (+1)</div>
+        <div class="dropdown-item" data-code="+44" data-flag="🇬🇧" data-country="uk">🇬🇧 UK (+44)</div>
+        <div class="dropdown-item" data-code="+234" data-flag="🇳🇬" data-country="nigeria">🇳🇬 Nigeria (+234)</div>
+        <div class="dropdown-item" data-code="+49" data-flag="🇩🇪" data-country="germany">🇩🇪 Germany (+49)</div>
+      </div>
+      </div>
+
+
+      <div class="country-container">
+              <label for="country">Country of Origin</label>
+              <input type="" placeholder="Country"class="country-container input" required>
+            </div> 
+          
+
+       <div class="date-container">
+              <label for="date-of-birth">Date of Birth</label>
+              <input type="date" placeholder="Date of Birth"class="name-input"id="dob" required>
+            </div>
+
+             
+     <button id="save-btn" class="account-continue-btn"onclick="saveAndContinue();">Save and continue</button>
+ 
+
+          </div>
+     </div>
+  </div>
+
+
+  <!----OTTP verification-->
+
+    <div class="ottp-verification-container">
+      <div class="ottp-details">
+      <h2>You are almost done.</h2>
+      <p>A 6-digit code was sent to <span class="email-verify">frontendjaguar@gmail.com</span></p>
+      <div class="ottp-box">
+        <div class="box1" onclick="ottpinput();"><input type="text" class="otp-input" maxlength="1"></div>
+        <div class="box1"onclick="ottpinput();"><input type="text" class="otp-input" maxlength="1"></div>
+        <div class="box1" onclick="ottpinput();"><input type="text" class="otp-input" maxlength="1"></div>
+        <div class="box1"onclick="ottpinput();"><input type="text" class="otp-input" maxlength="1"></div>
+        <div class="box1"onclick="ottpinput();"><input type="text" class="otp-input" maxlength="1"></div>
+        <div class="box1"onclick="ottpinput();"><input type="text" class="otp-input" maxlength="1"></div>
+        
+      </div>
+      </div>
+      
+      <button class="ottp-btn">Continue</button>
+      <p class="code-question">Code not received? Resend in <span class="ottp-time">00:60</span></p>
+
+    </div>
+
+<!---how did you hear section-->
+   <div class="advertisement-section">
+    <div class="advertisement-content">
+      <h2>How did you hear about Feenicks1 ?</h2>
+      <h3>I was invited by</h3>
+      <div class="all-first-socials">
+         <div class="socials-container"><span>Family</span></div>
+            <div class="socials-container"><span>Friend</span></div>
+             <div class="socials-container"><span> Investor</span></div>
+      </div>
+       <h3>Social media</h3>
+        <div class="all-first-socials">
+        <div class="socials-container"><span><img src="tiktok1.png" class="socials-img"alt="">Tiktok</span></div>
+         <div class="socials-container"><span>X</span></div>
+           <div class="socials-container"><span><img src="youtubelogo copy.png" class="socials-img"alt="">YouTube</span></div>
+            <div class="socials-container"><img src="linkedin2 copy.png" class="socials-img"alt=""><span>LinkedIn</span></div>
+              <div class="socials-container"><img src="instagram-logo.png" class="socials-img"alt=""><span>Instagram</span></div>
+      </div>
+      <h3>Other</h3>
+       <div class="all-first-socials">
+         <div class="socials-container"><span>Google Search</span></div>
+           <div class="socials-container"><span>Television</span></div>
+            <div class="socials-container"><span>Other</span></div>
+      </div>
+    </div>
+
+
+    <div class="advert-popup">
+      <div class="top-links-advert">
+          <span class="advert-close-btn" id="close-btn">&times;</span>
+          <a href="investmentPlans.html"class="advert-skip">Skip</a>
+      </div>
+      <div class=""><h3 class="social-type">Tiktok</h3></div>
+      <p>Additional Information (optional)</p>
+      <input type="text"class="social-description"placeholder="Enter details">
+     <a href="investmentPlans.html"><button class="advert-continue-btn">Continue</button></a> 
+    </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+ 
+    <script>
+
+      //for the sign up email page//
+  const emailInput = document.querySelector(".email-input");
+  const checkEmailBtn = document.querySelector(".continue-btn");
+  const overlay = document.querySelector("#overlay");
+  const popup = document.querySelector("#popup");
+  const popupText = document.querySelector("#popup-text");
+  const yesBtn = document.querySelector("#yesBtn");
+  const noBtn = document.querySelector("#noBtn");
+  let email_container=document.querySelector('.container');
+  let person_accountcontainer=document.querySelector('.person-account-container');
+  const password_container = document.querySelector('.password-creator-container');
+  let save_and_continuebtn=document.querySelector('.account-continue-btn');
+  let ottp_verification_container=document.querySelector('.ottp-verification-container');
+  let advertisement_section=document.querySelector('.advertisement-section');
+
+  
+  
+  checkEmailBtn.addEventListener("click", () => {
+    const emailVal = emailInput.value.trim();
+    if (emailVal !== "") {
+      popupText.textContent = `You entered \n${emailVal} for your email,is this correct?`;
+      overlay.style.display = "block";
+      popup.classList.add("show");
+    }
+  });
+
+
+  function closePopup() {
+    overlay.style.display = "none";
+    popup.classList.remove("show");
+  }
+  yesBtn.addEventListener("click", () => {
+    // alert("Email confirmed!");
+    closePopup();
+
+      loaderOverlay.style.display = "flex";
+     setTimeout(() => {
+      container
+      password_container.style.display="block";
+      email_container.style.display="none";
+      loaderOverlay.style.display = "none";
+
+    }, 3000); 
+    
+  });
+  noBtn.addEventListener("click", () => {
+    emailInput.focus();
+    closePopup();
+  });
+  // Close popup if overlay clicked
+  overlay.addEventListener("click", closePopup);
+  const loginForm = document.querySelector("#loginForm");
+  const loaderOverlay = document.querySelector("#loaderOverlay");
+  const container=document.querySelector('.container');
+   
+ 
+       // for the password section
+       
+  // ===== Password Section =======//
+const passwordInput = document.querySelector(".password-input");
+const radios = document.querySelectorAll(".radio");
+const labels = document.querySelectorAll(".security-label");
+const strengthText = document.getElementById("strength-text").querySelector("span");
+const checkbox = document.querySelector(".checkbox");
+const nextBtn = document.querySelector(".next-btn");
+
+// Default: grey labels + disabled button
+labels.forEach(label => (label.style.color = "#666"));
+nextBtn.classList.remove("active");
+
+// Input listener
+passwordInput.addEventListener("input", () => {
+  const value = passwordInput.value;
+
+  // Reset if empty
+  if (value === "") {
+    radios.forEach(r => (r.checked = false));
+    labels.forEach(l => (l.style.color = "#666"));
+    strengthText.textContent = "—";
+    strengthText.style.color = "#666";
+    updateButtonState();
+    return;
+  }
+
+  // Conditions
+  const minLength = value.length >= 8;
+  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+  const hasUpperLower = /[a-z]/.test(value) && /[A-Z]/.test(value);
+  const hasNumber = /\d/.test(value);
+
+  const conditions = [minLength, hasSpecial, hasUpperLower, hasNumber];
+
+  // Update radios + label colors
+  conditions.forEach((condition, index) => {
+    radios[index].checked = condition;
+    labels[index].style.color = condition ? "green" : "red";
+
+    // Add/remove red state on parent .option-1
+    const option = radios[index].closest(".option-1");
+    if (!condition) {
+      option.classList.add("invalid");
+    } else {
+      option.classList.remove("invalid");
+    }
+  });
+
+  // Strength meter logic
+  const passed = conditions.filter(c => c).length;
+
+  if (passed <= 1) {
+    strengthText.textContent = "Weak";
+    strengthText.style.color = "red";
+  } else if (passed === 2 || passed === 3) {
+    strengthText.textContent = "Medium";
+    strengthText.style.color = "orange";
+  } else if (passed === 4) {
+    strengthText.textContent = "Strong";
+    strengthText.style.color = "green";
+  }
+
+  updateButtonState();
+});
+
+// Enable button only when all secure + checkbox checked
+checkbox.addEventListener("change", updateButtonState);
+
+function updateButtonState() {
+  const allSecure = [...radios].every(r => r.checked);
+  if (allSecure && checkbox.checked) {
+    nextBtn.classList.add("active");
+    nextBtn.addEventListener('click',()=>{
+    nextBtn.style.backgroundColor="#666";
+    nextBtn.style.opacity="0.2";
+      loaderOverlay.style.display = "flex";
+     setTimeout(() => {
+      container
+      password_container.style.display="none";
+      email_container.style.display="none";
+      loaderOverlay.style.display = "none";
+      person_accountcontainer.style.display="block";
+
+    }, 3000); 
+    })
+
+    
+    
+  } else {
+    nextBtn.classList.remove("active");
+  }
+}
+
+//================user account details page  validation==============//
+
+document.addEventListener('DOMContentLoaded', () => {
+  const firstName = document.getElementById('firstName');
+  const surname = document.getElementById('surname');
+  const countryInput = document.querySelector('.country-container input');
+  const dob = document.getElementById('dob');
+  const saveBtn = document.getElementById('save-btn');
+  // Add error message spans under each input
+  [firstName, surname, countryInput, dob].forEach(input => {
+    const errorSpan = document.createElement('span');
+    errorSpan.className = 'error-msg';
+    errorSpan.style.color = 'red';
+    errorSpan.style.fontSize = '12px';
+    errorSpan.style.display = 'block';
+    input.parentNode.appendChild(errorSpan);
+  });
+  function validateName(name) {
+    return name.trim().length >= 2;
+  }
+  function validateForm() {
+    const firstValid = validateName(firstName.value);
+    const surnameValid = validateName(surname.value);
+    const countryValid = countryInput.value.trim() !== '';
+    const dobValid = dob.value.trim() !== '';
+    // Show error messages
+    firstName.nextElementSibling.textContent = firstValid ? '' : 'Enter a valid first name (2+ letters)';
+    surname.nextElementSibling.textContent = surnameValid ? '' : 'Enter a valid surname (2+ letters)';
+    countryInput.nextElementSibling.textContent = countryValid ? '' : 'Enter your country';
+    dob.nextElementSibling.textContent = dobValid ? '' : 'Select your date of birth';
+    // Activate button
+    if (firstValid && surnameValid && countryValid && dobValid) {
+      saveBtn.disabled = false;
+      saveBtn.style.cursor = 'pointer';
+      saveBtn.style.backgroundColor="green";
+      saveBtn.style.opacity="1";
+
+      saveBtn.addEventListener('click',()=>{
+         person_accountcontainer.style.opacity="0.2";
+         saveBtn.style.backgroundColor="#666";
+         saveBtn.style.opacity="0.2";
+        loaderOverlay.style.display = "flex";
+      
+
+     setTimeout(() => {
+      person_accountcontainer.style.display="none";
+      loaderOverlay.style.display = "none";
+      ottp_verification_container.style.display="block";
+
+
+    }, 3000); 
+      })
+
+    
+
+
+
+
+    } else {
+      saveBtn.disabled = true;
+      saveBtn.classList.remove('active');
+      saveBtn.style.cursor = 'not-allowed';
+    }
+  }
+  [firstName, surname, countryInput, dob].forEach(field => {
+    field.addEventListener('input', validateForm);
+  });
+  validateForm(); // initial check
+});
+
+//========for ottp code part============//
+function ottpinput(){
+let ottpbox=document.querySelector('.box1');
+ottpbox.style.border="2px solid green";
+setTimeout(()=>{
+ottpbox.style.border="none";
+},2000)
+
+
+}
+//for ottp countdown//
+
+
+  const timerSpan = document.querySelector('.ottp-time');
+  let totalSeconds = 60; // starting from 60 seconds
+  const countdown = setInterval(() => {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    // Format as MM:SS
+    timerSpan.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    totalSeconds--;
+    if (totalSeconds < 0) {
+      clearInterval(countdown);
+      timerSpan.textContent = "00:00";
+      // Optional: disable OTP submit button or show "Resend OTP"
+      alert("OTP expired!");
+    }
+  }, 1000);
+
+
+
+//===============for input ottp section===============//
+document.addEventListener('DOMContentLoaded', () => {
+  const otpInputs = document.querySelectorAll('.otp-input');
+  const otpBtn = document.querySelector('.ottp-btn');
+  function checkOtp() {
+    // Check if all inputs have exactly 1 digit
+    const allFilled = Array.from(otpInputs).every(input => input.value.trim().length === 1);
+   
+    if (allFilled) {
+      otpBtn.disabled = false;
+      otpBtn.style.backgroundColor = 'green';
+      otpBtn.style.cursor = 'pointer';
+      otpBtn.style.color = '#fff';
+
+    otpBtn.addEventListener('click',()=>{
+    otpBtn.style.backgroundColor="#666";
+    otpBtn.style.opacity="0.2";
+    ottp_verification_container.style.display="none";
+    
+   loaderOverlay.style.display = "flex";
+    setTimeout(()=>{
+    loaderOverlay.style.display = "none";
+   advertisement_section.style.display="block";
+    },3000)
+    
+
+   })
+
+
+
+    } else {
+      otpBtn.disabled = true;
+      otpBtn.style.backgroundColor = '';
+      otpBtn.style.cursor = 'not-allowed';
+    }
+  }
+  otpInputs.forEach((input, index) => {
+    input.addEventListener('input', () => {
+      // Only allow digits
+      input.value = input.value.replace(/[^0-9]/g, '');
+     
+      // Move to next input automatically
+      if (input.value && index < otpInputs.length - 1) {
+        otpInputs[index + 1].focus();
+      }
+     
+      checkOtp();
+    });
+    input.addEventListener('keydown', (e) => {
+      // Backspace moves focus to previous input
+      if (e.key === 'Backspace' && !input.value && index > 0) {
+        otpInputs[index - 1].focus();
+      }
+    });
+  });
+  checkOtp(); // initial check
+});
+
+
+
+
+
+//==========for the advvertisement hear us section============//
+
+  let advert_close_btn=document.querySelector('.advert-close-btn');
+  let advert_popup=document.querySelector('.advert-popup');
+  advert_close_btn.addEventListener('click',()=>{
+  advert_popup.style.display="none";
+  })  
+
+
+    let socials_container=document.querySelectorAll('.socials-container');
+    socials_container.forEach((container)=>{
+    container.addEventListener('click',()=>{
+    advert_popup.style.display="block";
+    let social_type=document.querySelector('.social-type');
+    const social_name=container.querySelector('span').innerText.trim();
+    social_type.textContent=social_name;
+ 
+  })
+  })
+ 
+//for the advertisement popup message//
+ let advert_box=document.querySelector('.social-description');
+ let advert_continue_btn=document.querySelector('.advert-continue-btn');
+
+ advert_continue_btn.addEventListener('click',()=>{
+  window.location.href="";
+})
+
+window.addEventListener('click',(e)=>{
+  if(e.target===advert_popup){
+ advert_popup.style.display="none";
+  }
+})
+
+
+
+
+
+    </script>
+</body>
+</html>
