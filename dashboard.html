@@ -15,7 +15,7 @@
   }
   .container{
     width:100%;
-    height:110vh;
+    height:160vh;
       /* background-color: rgb(23, 146, 23); */
   
   }
@@ -115,6 +115,43 @@
     font-size: 18px;
      color: #f5f5f5;
   }
+ .possible-return .rate-percent{
+  font-size: 20px;
+  color: rgb(4, 221, 4);
+  display: flex;
+}
+.possible-return .percent-symbol{
+ color: rgb(4, 221, 4);
+}
+.possible-return{
+  display: flex;
+  flex-direction: row;
+  margin-top: -20px;
+  gap:5px;
+}
+
+.possible-return p{
+  color: #fafafa;
+  font-size: 20px;
+}
+.possible-return .top-arrow{
+   font-size: 24px;
+  font-weight: 900;
+  margin-top: 8px;
+  color: rgb(4, 221, 4);
+  margin-right: 2px;
+  padding: 0px 0px;
+  display:block;
+}
+.possible-return .arrow{
+  font-size: 24px;
+  font-weight: 900;
+  margin-top: 4px;
+   display: none;
+  color: red;
+  margin-right: 5px;
+  padding: 0px 0px;
+}
   .balance-details button{
   width:60%;
   height:40px;
@@ -150,7 +187,7 @@
   }
   .statistics-section p{
     color: #666;
-    font-size: 17px;
+    font-size: 14.5px;
     cursor: pointer;
   }
    .statistics-section h3{
@@ -163,15 +200,16 @@
    color: rgb(8, 69, 8);
    }
    .graph-section{
-     width:95%;
+     width:100%;
     height:360px;
       background:linear-gradient(135deg,rgb(217, 239, 217),rgb(222,212,200)) ;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
+    padding-bottom: 60px;
     border-radius: 15px;
     margin-left:-20px;
-    padding-right:  35px;
-    padding-left: 10px;
+    padding-right:  45px;
+    padding-left: 30px;
    }
 .graph-section h3{
   font-size: 20px;
@@ -179,6 +217,7 @@
   text-align: center;
       position: relative;
     color: rgb(8, 69, 8); 
+    
  }
  .chart-container {
       position: relative;
@@ -218,9 +257,8 @@
       display: block;
       font-size: 28px;
     }
-   
-    
-  }
+     
+        }
     </style>
 </head>
 <body>
@@ -237,7 +275,15 @@
     <div class="balance-details">
         <p>Portfolio Value</p>
         <h2 class="balance">$9,340.00</h2>
-         <span>+$1422.33 (11.20%) Today </span>
+        
+ <div class="possible-return">
+  <p class="top-arrow">&uarr;</p>
+  <p class="arrow"> &darr; </p>
+    <p class="rate-percent">6</p><p class="percent-symbol">%</p>
+    <p id="return-value"class="return-value">120.00</p>
+    
+  </div>
+
          <button class="fund-btn">Fund Portfolio</button>
     </div>
     <div class="statistics-section">
@@ -337,10 +383,63 @@
         label.style.opacity = 1;
       }, delay + 1000);
       currentAngle += angle;
-      delay += 1000; // stagger animation for each arc
+      delay += 3000; // stagger animation for each arc
     });
+
+
+
+
+
+
+
+    //for update top dashboard//
+//  uarr,darr
+
+ 
+
+
+  let arrow=document.querySelector('.arrow');
+  let return_value=document.querySelector('.return-value');
+
+  let rate_percent=document.querySelector('.rate-percent');
+ let top_arrow=document.querySelector('.top-arrow');
+  let percent=parseFloat(rate_percent.textContent);
+  let percent_symbol=document.querySelector('.percent-symbol');
+  let return_amount=parseFloat(return_value.textContent);
+ 
   
+
+  setInterval(()=>{
+  const goingup=Math.random()>0.2;
+  if(goingup){
+    percent+=0.01;
+    rate_percent.style.color="rgb(4, 221, 4)";
+    percent_symbol.style.color="rgb(4, 221, 4)";
+    arrow.style.display="none";
+    top_arrow.style.display="block";
+    return_amount+=percent;
+    return_value.textContent=(return_amount).toFixed(2);
+    
+  }
+  else{
+  percent-=0.01;
+  rate_percent.style.color="red";
+ percent_symbol.style.color="red";
+ arrow.style.display="block";
+ top_arrow.style.display="none";
+  return_amount-=percent;
+    return_value.textContent=`${(return_amount).toFixed(2)}`;
+
+  }
+  rate_percent.textContent=percent.toFixed(2);
+  },2000)
+ 
+  
+ 
+
+
+
+    
  </script>
 </body>
-
 </html>
