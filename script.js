@@ -4,44 +4,44 @@
  
  //for the typing animation//
 
- const sentences = [
-    "Welcome to Feenicks1 Solutions Ltd",
-    "Explore Investment Options tailored for you",
-    "Take our quick risk quiz to get started", 
-   " Watch your portfolio grow over time."
+//  const sentences = [
+//     "Welcome to Feenicks1 Solutions Ltd",
+//     "Explore Investment Options tailored for you",
+//     "Take our quick risk quiz to get started", 
+//    " Watch your portfolio grow over time."
    
 
-  ];
-  let part = 0;
-  let index = 0;
-  let currentText = '';
-  let isDeleting = false;
-  const textElement = document.querySelector('.pop-up-maintext');
+//   ];
+//   let part = 0;
+//   let index = 0;
+//   let currentText = '';
+//   let isDeleting = false;
+//   const textElement = document.querySelector('.pop-up-maintext');
   
-  function type() {
-    const fullText = sentences[part];
-    if (isDeleting) {
-      currentText = fullText.substring(0, index--);
-    } else {
-      currentText = fullText.substring(0, index++);
-    }
-    textElement.textContent = currentText;
-    if (!isDeleting && index === fullText.length + 1) {
-      // Pause after typing full sentence
-      isDeleting = true;
-      setTimeout(type, 3000);
-      return;
-    }
-    if (isDeleting && index === 0) {
-      // Move to next sentence
-      isDeleting = false;
-      part = (part + 1) % sentences.length;
-    }
-    const speed = isDeleting ? 50 : 120;
-    setTimeout(type, speed);
-  }
-  // Start typing after page load
-  window.onload = () => type();
+//   function type() {
+//     const fullText = sentences[part];
+//     if (isDeleting) {
+//       currentText = fullText.substring(0, index--);
+//     } else {
+//       currentText = fullText.substring(0, index++);
+//     }
+//     textElement.textContent = currentText;
+//     if (!isDeleting && index === fullText.length + 1) {
+      
+//       isDeleting = true;
+//       setTimeout(type, 3000);
+//       return;
+//     }
+//     if (isDeleting && index === 0) {
+    
+//       isDeleting = false;
+//       part = (part + 1) % sentences.length;
+//     }
+//     const speed = isDeleting ? 50 : 120;
+//     setTimeout(type, speed);
+//   }
+ 
+//   window.onload = () => type();
 
  
  
@@ -486,135 +486,7 @@ function googleTranslateElementInit() {
       });
     });
 
-    //-====================for the chatbot part==================//
-    // Questions array
-const questions = [
-  { question: "What’s your age range?", options: [{ text: "Under 25", value: 3 }, { text: "25-40", value: 2 }, { text: "Over 40", value: 1 }] },
-  { question: "How would you describe your risk appetite?", options: [{ text: "High risk, high reward", value: 3 }, { text: "Moderate risk", value: 2 }, { text: "Low risk, safe investments", value: 1 }] },
-  { question: "How long do you plan to invest?", options: [{ text: "Less than 1 year", value: 1 }, { text: "1-5 years", value: 2 }, { text: "Over 5 years", value: 3 }] },
-  { question: "Have you invested before?", options: [{ text: "Yes, frequently", value: 3 }, { text: "Once or twice", value: 2 }, { text: "Never", value: 1 }] },
-  { question: "Do you prefer stable income or higher growth?", options: [{ text: "Higher growth, long term focus", value: 3 }, { text: "Balanced growth and stability", value: 2 }, { text: "Stable income, low risk", value: 1 }] },
-  { question: "How comfortable are you with market volatility?", options: [{ text: "Very comfortable", value: 3 }, { text: "Somewhat comfortable", value: 2 }, { text: "Not comfortable", value: 1 }] },
-  { question: "Do you prefer local or international investments?", options: [{ text: "International", value: 3 }, { text: "Mixed", value: 2 }, { text: "Local only", value: 1 }] }
-];
-// Risk profiles
-const riskProfiles = [
-  { min: 7, max: 11, level: "Conservative (Low Risk)", description: "Recommended: Mutual Funds, Investwise Capital.", volatility: "Low", returns: "Low", focus: "Capital protection", emoji: "🟢" },
-  { min: 12, max: 15, level: "Moderate (Balanced Risk)", description: "Recommended: Agribusiness Capital, Mixed Mutual Funds.", volatility: "Medium", returns: "Moderate", focus: "Balanced growth & income", emoji: "🟡" },
-  { min: 16, max: 18, level: "Aggressive (High Risk)", description: "Recommended: Real Estate, Digital Assets (Bitcoin).", volatility: "High", returns: "High", focus: "Long term wealth accumulation", emoji: "🔴" },
-  { min: 19, max: 21, level: "Speculative (Very High Risk)", description: "Recommended: Cryptocurrency & Forex.", volatility: "Very High", returns: "Very High", focus: "Maximum returns, high loss risk", emoji: "🔥" }
-];
-let currentQuestion = 0;
-let totalScore = 0;
-const icon = document.getElementById("chatbot-icon");
-const windowDiv = document.getElementById("chatbot-window");
-const messagesDiv = document.getElementById("chatbot-messages");
-const inputDiv = document.getElementById("chatbot-input");
-// Toggle chat window
-icon.addEventListener("click", () => {
-  if(windowDiv.style.display === "none" || windowDiv.style.display === ""){
-    windowDiv.style.display = "flex";
-    if(currentQuestion === 0 && messagesDiv.innerHTML === ""){
-      showQuestion();
-    }
-  } else {
-    windowDiv.style.display = "none";
-  }
-});
-// Append bot message
-function appendBotMessage(text){
-  const div = document.createElement("div");
-  div.className = "bot-message";
-  div.textContent = text;
-  messagesDiv.appendChild(div);
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
-// Append user message
-function appendUserMessage(text){
-  const div = document.createElement("div");
-  div.className = "user-message";
-  div.textContent = text;
-  messagesDiv.appendChild(div);
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
-// Show next question
-function showQuestion(){
-  if(currentQuestion >= questions.length){
-    showResult();
-    return;
-  }
-  const q = questions[currentQuestion];
-  appendBotMessage(q.question);
-  inputDiv.innerHTML = "";
-  q.options.forEach(opt => {
-    const btn = document.createElement("button");
-    btn.textContent = opt.text;
-    btn.addEventListener("click", () => {
-      appendUserMessage(opt.text);
-      totalScore += opt.value;
-      currentQuestion++;
-      setTimeout(showQuestion, 400);
-    });
-    inputDiv.appendChild(btn);
-  });
-}
-// Show final result with Risk Bar
-function showResult(){
-  inputDiv.innerHTML = "";
-  const profile = riskProfiles.find(p => totalScore >= p.min && totalScore <= p.max) || riskProfiles[0];
-  appendBotMessage(`${profile.emoji} Risk Level: ${profile.level}`);
-  appendBotMessage(`Volatility: ${profile.volatility}`);
-  appendBotMessage(`Expected Returns: ${profile.returns}`);
-  appendBotMessage(`Investment Focus: ${profile.focus}`);
-  appendBotMessage(profile.description);
-  // Risk bar
-  const barContainer = document.createElement("div");
-  barContainer.className = "bot-message";
-  const label = document.createElement("div");
-  label.textContent = "Risk Score Visual:";
-  const bar = document.createElement("div");
-  bar.className = "risk-bar-container";
-  const fill = document.createElement("div");
-  fill.className = "risk-bar-fill";
-  fill.style.width = `${(totalScore/21)*100}%`;
-  fill.style.background = profile.emoji === "🟢" ? "#4CAF50" :
-                         profile.emoji === "🟡" ? "#FFEB3B" :
-                         profile.emoji === "🔴" ? "#F44336" : "#FF5722";
-  bar.appendChild(fill);
-  barContainer.appendChild(label);
-  barContainer.appendChild(bar);
-  messagesDiv.appendChild(barContainer);
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  // Restart button
-  const restartBtn = document.createElement("button");
-  restartBtn.textContent = "Restart Quiz";
-  restartBtn.addEventListener("click", ()=>{
-    currentQuestion = 0;
-    totalScore = 0;
-    messagesDiv.innerHTML = "";
-    showQuestion();
-  });
-  inputDiv.appendChild(restartBtn);
-}
-
-
-// Show tooltip after page loads
-const tooltip = document.getElementById("chatbot-tooltip");
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    tooltip.classList.add("show");
-  }, 500); // small delay
-});
-// Hide tooltip after 5 seconds automatically
-setTimeout(() => {
-  tooltip.classList.remove("show");
-}, 5500);
-// Optional: hide when user clicks it
-tooltip.addEventListener("click", () => {
-  tooltip.classList.remove("show");
-});
-
-
+ 
 
 
 
