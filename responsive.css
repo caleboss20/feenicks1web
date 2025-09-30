@@ -202,7 +202,7 @@
   .pop-up-maintext {
     font-size: clamp(45px, 5vw, 40px);
     text-align: left;
-    width: 100%;
+    width: 90%;
     margin-left: 10px;
     margin-top: 4px;
     font-weight: 100;
@@ -957,6 +957,7 @@ input:checked + .slider:before {
 
 
 }
+
 
 
 
