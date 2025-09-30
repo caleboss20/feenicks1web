@@ -37,7 +37,7 @@ button,a,h1,p,h2,h3,h4,h5,h6{
 }
 /* Base navbar */
 ul {
-  background-color: rgb(34, 167, 34);
+  background-color: rgb(6, 88, 6);
   display: flex;
   align-items: center;
   z-index: 2000;
@@ -82,10 +82,17 @@ ul li a {
   margin-right: auto;
   cursor: pointer;
      margin-left: 8%;
-    font-size: 22px;
+    font-size: 12px;
     letter-spacing: 1px;
-    font-style: italic;
+    /* font-style: italic; */
     font-weight: 900;
+}
+.asset-logo{
+  font-size: 12px;
+  margin-top: 48px;
+  margin-left: 112px;
+  color: #fff;
+  position: absolute;
 }
 
 .top-search {
@@ -265,7 +272,7 @@ background: rgba(0,0,0,0,0.4);
     color: #fff;
     margin-top: 20px;
     border: none;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     background-color: rgb(34, 167, 34);
    /* background: linear-gradient(45deg, #56ab2f, #29a131,#12b372); */
      transition: .6s ease-in-out;
@@ -315,7 +322,7 @@ transform: translateX(0);
 
 
 .plan-btn{
-    width:200px;
+    /* width:200px; */
     height:40px;
     cursor: pointer; 
     margin-left: 10px;
@@ -822,9 +829,11 @@ transform: translateX(0);
 
 .investments-options-all {
   width: 100%;
-  position: relative;
+  /* position: relative; */
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(3,1fr);
+
+
  
 }
 
@@ -1069,6 +1078,12 @@ li {
 
 
 
+  .cookie-banner{
+  display: none;
+  }
+  #cookie-modal{
+    display: none;
+  }
 
 
 /*animation on scroll*/
